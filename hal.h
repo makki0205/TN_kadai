@@ -42,17 +42,17 @@
 #define CLN 3
 
 // dev_id
-#define LED1 1
-#define LED2 2
+#define LED1 0
+#define LED2 1
 
 // req_cd
 #define OPEN 1
 #define CTL 2
-#define CLOSE 2
+#define CLOSE 3
 
 // req_ope
-#define LED_ON 1
-#define LED_ON 2
+#define LED_ON 0
+#define LED_OFF 1
 #define LED_BLINK 3
 #define LED_STAT 4
 
@@ -89,7 +89,7 @@ typedef struct
 	int dev_id;
 	int blink_timer;
 	int blink_cycle;
-} LED;
+} DEV;
 
 /*
  *  タスクのプロトタイプ宣言
@@ -98,15 +98,15 @@ typedef struct
 //*********************************************************************
 // mail関係
 void DsendMail(D_PKT pkt);
-void USendMail(U_PKT pkt);
-void DSeceiveMail(D_PKT *pkt);
-void USeceiveMail(int task_id, int dev_id, U_PKT *pkt);
+void USendMail(int task_id, int dev_id, int res);
+void DReceiveMail(D_PKT *pkt);
+void UReceiveMail(int task_id, int dev_id, U_PKT *pkt);
 void mpfmanage(int ope, MBX_PKT *packet);
 
 //
 int drv_api_led(int task_id, int dev_id, int req_cd, int req_ope, int blink_timer, int blink_cycle);
 void drv_main(intptr_t exinf);
-void blink_led(int no, int blink_timer, int blink_cycle);
-void write_led(int no, int status);
+void led_ctl(D_PKT pkt);
+void write_led(int dev_id, int status);
 //*********************************************************************
 #endif /* TOPPERS_MACRO_ONLY */
