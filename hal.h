@@ -86,7 +86,6 @@ typedef struct
 {
 	int status;
 	int task_id;
-	int dev_id;
 	int blink_timer;
 	int blink_cycle;
 } DEV;

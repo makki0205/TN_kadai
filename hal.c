@@ -45,7 +45,6 @@ int drv_api_led(int task_id, int dev_id, int req_cd, int req_ope, int blink_time
 void drv_main(intptr_t exinf)
 {
     D_PKT dPkt;
-    U_PKT uPkt;
     while (true)
     {
         // 受け取る
