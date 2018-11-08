@@ -39,7 +39,7 @@ int drv_api_led(int task_id, int dev_id, int req_cd, int req_ope, int blink_time
     dPkt.blink_cycle = blink_cycle;
     DsendMail(dPkt);
     UReceiveMail(task_id, dev_id, *uPkt);
-    return uPkt.res
+    return uPkt.res;
 }
 
 void drv_main(intptr_t exinf)
@@ -53,11 +53,11 @@ void drv_main(intptr_t exinf)
         switch (dPkt.req_cd)
         {
         case OPEN:
-            if (dev_table[dev_id].status == free)
+            if (dev_table[dPkt.dev_id].status == free)
             {
                 // 確保
-                dev_table[dev_id].status = IN_USE;
-                dev_table[dev_id].task_id = dPkt.task_id;
+                dev_table[dPkt.dev_id].status = IN_USE;
+                dev_table[dPkt.dev_id].task_id = dPkt.task_id;
                 sendMail(dPkt.task_id, dPkt.dev_id, OK);
             }
             sendMail(dPkt.task_id, dPkt.dev_id, IN_USE);
@@ -66,7 +66,7 @@ void drv_main(intptr_t exinf)
             led_ctl(dPkt);
             break;
         case CLOSE:
-            dev_table[dev_id].status = FREE;
+            dev_table[dPkt.dev_id].status = FREE;
             sendMail(dPkt.task_id, dPkt.dev_id, OK);
             break;
         default:

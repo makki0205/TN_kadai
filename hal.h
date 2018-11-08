@@ -100,7 +100,7 @@ void DsendMail(D_PKT pkt);
 void USendMail(int task_id, int dev_id, int res);
 void DReceiveMail(D_PKT *pkt);
 void UReceiveMail(int task_id, int dev_id, U_PKT *pkt);
-void mpfmanage(int ope, MBX_PKT *packet);
+//void mpfmanage(int ope, MBX_PKT *packet);
 
 //
 int drv_api_led(int task_id, int dev_id, int req_cd, int req_ope, int blink_timer, int blink_cycle);
